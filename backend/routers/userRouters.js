@@ -19,6 +19,22 @@ app.get('/add', (req, res) => {
     res.send('Response from add');
 });
 
+userRouter.post('/authenticate', (req, res) => {
+    console.log(req.body);
+
+    Model.findone(req.body)
+    .then((result) => {
+        if(result) res.status(200).json(result);
+        else res.status(400).json(message : 'login failed'})
+     }).catch((err) => {
+        console.log();  
+})
+
+// getall
+app.get('/add', (req, res) => {
+    res.send('Response from getall');
+});
+
 //delete
 app.get('/del', (req, res) => {
     res.send('Response from del');

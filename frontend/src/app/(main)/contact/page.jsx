@@ -3,7 +3,6 @@ import React from 'react'
 const page = () => {
   return (
     <div>
-      <div>
 
       <section className="bg-white dark:bg-gray-900">
     <div className="container px-6 py-12 mx-auto">
@@ -41,7 +40,7 @@ const page = () => {
             Our friendly team is here to help.
           </p>
           <p className="mt-2 text-blue-500 dark:text-blue-400">
-            hello@merakiui.com
+            jhanvikhare@gmail.com
           </p>
         </div>
         <div className="flex flex-col items-center justify-center text-center">
@@ -70,10 +69,10 @@ const page = () => {
             Office
           </h2>
           <p className="mt-2 text-gray-500 dark:text-gray-400">
-            Come say hello at our office HQ.
+          Come say hello at our office HQ.
           </p>
           <p className="mt-2 text-blue-500 dark:text-blue-400">
-            100 Smith Street Collingwood VIC 3066 AU
+            Hazratganj Lucknow
           </p>
         </div>
         <div className="flex flex-col items-center justify-center text-center">
@@ -97,16 +96,15 @@ const page = () => {
             Phone
           </h2>
           <p className="mt-2 text-gray-500 dark:text-gray-400">
-            Mon-Fri from 8am to 5pm.
+            Mon-Fri from 10am to 5pm.
           </p>
           <p className="mt-2 text-blue-500 dark:text-blue-400">
-            +1 (555) 000-0000
+            +91 (6392973595)
           </p>
         </div>
       </div>
     </div>
   </section>
-  </div>
   </div>
   )
 }
