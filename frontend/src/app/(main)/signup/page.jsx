@@ -130,9 +130,14 @@ const Signup = () => {
                   <input
                     type="text"
                     id="hs-hero-name-2"
+                    onChange={signupForm.handleChange}
+                    value={signupForm.values.name}
                     className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                     placeholder="Full name"
                   />
+                   {signupForm.touched.name && ( 
+                    <small className='text-red-300'>{signupForm.errors.name}</small>
+                  )}
                 </div>
                 <div className="mb-4">
                   <label
@@ -144,9 +149,14 @@ const Signup = () => {
                   <input
                     type="email"
                     id="hs-hero-email-2"
+                    onChange={signupForm.handleChange}
+                    value={signupForm.values.email}
                     className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                     placeholder="Email address"
                   />
+                   {signupForm.touched.email && ( 
+                    <small className='text-red-300'>{signupForm.errors.email}</small>
+                  )}
                 </div>
                 <div className="mb-4">
                   <label
@@ -159,12 +169,12 @@ const Signup = () => {
                     type="password"
                     id="hs-hero-password-2"
                     onChange={signupForm.handleChange}
-                    value={signupForm.values.email}
+                    value={signupForm.values.password}
                     className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                     placeholder="Password"
                   />
-                  {signupForm.touched.email && ( 
-                    <small className='text-red-300'>{signupForm.errors.email}</small>
+                  {signupForm.touched.password && ( 
+                    <small className='text-red-300'>{signupForm.errors.password}</small>
                   )}
                 </div>
                 <div className="grid">
