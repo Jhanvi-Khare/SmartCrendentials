@@ -72,7 +72,7 @@ const page = () => {
           Come say hello at our office HQ.
           </p>
           <p className="mt-2 text-blue-500 dark:text-blue-400">
-            Hazratganj Lucknow
+            Hazratganj, Lucknow
           </p>
         </div>
         <div className="flex flex-col items-center justify-center text-center">
@@ -99,7 +99,7 @@ const page = () => {
             Mon-Fri from 10am to 5pm.
           </p>
           <p className="mt-2 text-blue-500 dark:text-blue-400">
-            +91 (6392973595)
+            +91 (7788745100)
           </p>
         </div>
       </div>

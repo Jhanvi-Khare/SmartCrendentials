@@ -10,13 +10,14 @@ const Signup = () => {
     name: Yup.string().required('Name is Required').min(3, 'Name is Too Short'),
     email: Yup.string().email('Invalid Email').required('Email is Required'),
     password: Yup.string().required('Password is Required').min(6, 'Password is Too Short')
-    .matches(/[A-Z]/, 'Password must contain uppercase letter' )
-    .matches(/[a-z]/, 'Password must contain lowercase letter')
-    .matches(/[0-9]/, 'Password must contain number'),
+      .matches(/[A-Z]/, 'Password must contain uppercase letter')
+      .matches(/[a-z]/, 'Password must contain lowercase letter')
+      .matches(/[0-9]/, 'Password must contain number'),
     confirmPassword: Yup.string().required('Confirm Password is Required')
-    .oneOf([Yup.ref('password'), null], 'Passwords must match')
+      .oneOf([Yup.ref('password'), null], 'Passwords must match')
   });
 
+  const router = useRouter();
   const signupForm = useFormik({
     initialValues: {
       name: '',
@@ -24,48 +25,31 @@ const Signup = () => {
       password: '',
       confirmPassword: ''
     },
-    onSubmit: (values, {resetForm}) => {
+    onSubmit: (values, { resetForm }) => {
       console.log(values);
-      resetForm();
+      fetch('http://localhost:5000/user/add', {
+        method: 'POST',
+        body: JSON.stringify(values),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        .then((response) => {
+          console.log(response.status);
+          if (response.status === 200) {
+            resetForm();
+            toast.success('Signup Successfull');
+          } else {
+            toast.error('something went wrong');
+          }
+        }).catch((err) => {
+          console.log(err);
+          toast.error('Something went wrong');
+        });
     },
     validationSchema: signupValidationSchema
   });
-  //const router = useRouter();
 
-  //const loginForm = useFormik({
-   // initialValues: {
-     // name: '',
-     // email: '',
-      //password: ''
-   // },
-    //onSubmit: (values) => {
-      //fetch('http://localhost:5000/user/authenticate', {
-        //method: 'POST',
-        //body: JSON.stringify(values),
-        //headers: {
-          //'Content-Type': 'application/json'
-        //}
-      //})
-        //.then((response) => {
-          //console.log(response.status);
-          //if (response.status === 200) {
-            //toast.success('Login Successfull');
-            //response.json()
-              //.then((data) => {
-                //console.log(data);
-                //sessionStorage.setItem('user', JSON.stringify(data));
-                //router.push('/user/edit-page');
-              //})
-          //} else {
-            //toast.error('Invalid Credentials');
-
-          //}
-        //}).catch((err) => {
-          //console.log(err);
-          //toast.error('Something went wrong');
-        //});
-    //}
-  //})//
   return (
     <div>
       <div><>
@@ -135,7 +119,7 @@ const Signup = () => {
                     className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                     placeholder="Full name"
                   />
-                   {signupForm.touched.name && ( 
+                  {signupForm.touched.name && (
                     <small className='text-red-300'>{signupForm.errors.name}</small>
                   )}
                 </div>
@@ -154,7 +138,7 @@ const Signup = () => {
                     className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                     placeholder="Email address"
                   />
-                   {signupForm.touched.email && ( 
+                  {signupForm.touched.email && (
                     <small className='text-red-300'>{signupForm.errors.email}</small>
                   )}
                 </div>
@@ -173,7 +157,7 @@ const Signup = () => {
                     className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                     placeholder="Password"
                   />
-                  {signupForm.touched.password && ( 
+                  {signupForm.touched.password && (
                     <small className='text-red-300'>{signupForm.errors.password}</small>
                   )}
                 </div>

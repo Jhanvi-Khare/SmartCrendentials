@@ -3,14 +3,20 @@ const express = require('express');
 const userRouter = require('./routers/userRouter');
 const badgeRouter = require('./routers/badgeRouter');
 
+const cors = require('cors');
+
 //initialize express
 const app = express();
 const port = 5000;
 
+app.use(cors({
+    origin: ['http://localhost:3000']
+}))
+app.use(express.json());
+
 //middleware
 app.use('/user', userRouter);
 app.use('/badge', badgeRouter);
-
 
 // endpoint
 app.get('/', (req, res) => {

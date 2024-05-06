@@ -23,31 +23,38 @@ const Login = () => {
     onSubmit: (values) => {
       console.log(values);
 
-      fetch('http://localhost:5001/user/add', {
+      fetch('http://localhost:5000/user/authenticate', {
         method: 'POST',
         body: JSON.stringify(values),
         headers: {
           'Content-Type': 'application/json'
-       }
+        }
       })
-      .then((response) => {
-        console.log(response.status);
-        if(response.status === 200){
-          toast.success('user Registered Succesfully');
-        }
-        else{
-          toast.error('user Registration failed');
-        }
-      }).catch((err) =>{
+        .then((response) => {
+          console.log(response.status);
+          if (response.status === 200) {
+            resetForm();
+            toast.success('Signup Successfull');
+            response.json()
+              .then((data) => {
+                console.log(data);
+                sessionStorage.setItem('user', JSON.stringify(data));
+                router.push('/');
+              })
+          } else {
+            toast.error('Invalid Credentials');
+
+          }
+        }).catch((err) => {
           console.log(err);
-      });
+        });
 
     },
     validationSchema:
       loginValidationSchema
   })
 
- 
+
   return (
     <div><div className="space-y-4">
 
@@ -91,7 +98,7 @@ const Login = () => {
                     onChange={loginForm.handleChange}
                     value={loginForm.values.email}
                   />
-                  {loginForm.touched.email && ( 
+                  {loginForm.touched.email && (
                     <small className='text-red-300'>{loginForm.errors.email}</small>
                   )}
                 </div>
@@ -120,7 +127,7 @@ const Login = () => {
                     onChange={loginForm.handleChange}
                     value={loginForm.values.password}
                   />
-                  {loginForm.touched.password && ( 
+                  {loginForm.touched.password && (
                     <small className='text-red-300'>{loginForm.errors.password}</small>
                   )}
                 </div>
