@@ -1,103 +1,70 @@
+'use client';
+import { useFormik } from 'formik';
 import React from 'react'
+import toast from 'react-hot-toast';
 
 const AddStudent = () => {
+
+  const studentForm = useFormik({
+    initialValues: {
+      name: '',
+      email: '',
+      enrollmentNumber: '',
+      image: '',
+      subject: '',
+      admissionDate: '',
+      completionDate: ''
+    },
+    onSubmit: (values, { resetForm }) => {
+      console.log(values);
+      fetch('http://localhost:5000/student/add', {
+        method: 'POST',
+        body: JSON.stringify(values),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        .then((response) => {
+          console.log(response.status);
+          if (response.status === 200) {
+            resetForm();
+            toast.success('Student Added Successfully');
+          } else {
+            toast.error('something went wrong');
+          }
+        }).catch((err) => {
+          console.log(err);
+          toast.error('Something went wrong');
+        });
+    },
+  })
+
   return (
-    
-    
+
     <div>
-       <header className="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full bg-blue-600 text-sm py-3 sm:py-0">
-      <nav
-        className="relative max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8"
-        aria-label="Global"
-      >
-        <div className="flex items-center justify-between">
-          <a
-            className="flex-none text-xl font-semibold text-white"
-            href="#"
-            aria-label="Brand"
-          >
-            Brand
-          </a>
-          <div className="sm:hidden">
-            <button
-              type="button"
-              className="hs-collapse-toggle size-9 flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-white/20 text-white hover:border-white/40 disabled:opacity-50 disabled:pointer-events-none"
-              data-hs-collapse="#navbar-collapse-with-animation"
-              aria-controls="navbar-collapse-with-animation"
-              aria-label="Toggle navigation"
-            >
-              <svg
-                className="hs-collapse-open:hidden flex-shrink-0 size-4"
-                xmlns="http://www.w3.org/2000/svg"
-                width={24}
-                height={24}
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <line x1={3} x2={21} y1={6} y2={6} />
-                <line x1={3} x2={21} y1={12} y2={12} />
-                <line x1={3} x2={21} y1={18} y2={18} />
-              </svg>
-              <svg
-                className="hs-collapse-open:block hidden flex-shrink-0 size-4"
-                xmlns="http://www.w3.org/2000/svg"
-                width={24}
-                height={24}
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M18 6 6 18" />
-                <path d="m6 6 12 12" />
-              </svg>
-            </button>
-          </div>
-        </div>
-        <div
-          id="navbar-collapse-with-animation"
-          className="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:block"
+      <header className="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full bg-blue-600 text-sm py-3 sm:py-0">
+        <nav
+          className="relative max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8"
+          aria-label="Global"
         >
-          <div className="flex flex-col gap-y-4 gap-x-0 mt-5 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:ps-7">
+          <div className="flex items-center justify-between">
             <a
-              className="font-medium text-white sm:py-6"
+              className="flex-none text-xl font-semibold text-white"
               href="#"
-              aria-current="page"
+              aria-label="Brand"
             >
-              Home
+              Smart Credentials
             </a>
-            <a
-              className="font-medium text-white/80 hover:text-white sm:py-6"
-              href="#"
-            >
-              Signup
-            </a>
-            <a
-              className="font-medium text-white/80 hover:text-white sm:py-6"
-              href="#"
-            >
-              Login
-            </a>
-            <a
-              className="font-medium text-white/80 hover:text-white sm:py-6"
-              href="#"
-            >
-              Account
-            </a>
-            <div className="hs-dropdown [--strategy:static] sm:[--strategy:fixed] [--adaptive:none] sm:[--trigger:hover] sm:py-4">
+            <div className="sm:hidden">
               <button
                 type="button"
-                className="flex items-center w-full text-white/80 hover:text-white font-medium"
+                className="hs-collapse-toggle size-9 flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-white/20 text-white hover:border-white/40 disabled:opacity-50 disabled:pointer-events-none"
+                data-hs-collapse="#navbar-collapse-with-animation"
+                aria-controls="navbar-collapse-with-animation"
+                aria-label="Toggle navigation"
               >
-                Dropdown
                 <svg
-                  className="flex-shrink-0 ms-2 size-4"
+                  className="hs-collapse-open:hidden flex-shrink-0 size-4"
                   xmlns="http://www.w3.org/2000/svg"
                   width={24}
                   height={24}
@@ -108,359 +75,62 @@ const AddStudent = () => {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 >
-                  <path d="m6 9 6 6 6-6" />
+                  <line x1={3} x2={21} y1={6} y2={6} />
+                  <line x1={3} x2={21} y1={12} y2={12} />
+                  <line x1={3} x2={21} y1={18} y2={18} />
+                </svg>
+                <svg
+                  className="hs-collapse-open:block hidden flex-shrink-0 size-4"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width={24}
+                  height={24}
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M18 6 6 18" />
+                  <path d="m6 6 12 12" />
                 </svg>
               </button>
-              <div className="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] sm:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 sm:w-48 hidden z-10 bg-white sm:shadow-md rounded-lg p-2 dark:bg-neutral-800 sm:dark:border dark:border-neutral-700 dark:divide-neutral-700 before:absolute top-full sm:border before:-top-5 before:start-0 before:w-full before:h-5">
-                <a
-                  className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300"
-                  href="#"
-                >
-                  About
-                </a>
-                <div className="hs-dropdown [--strategy:static] sm:[--strategy:absolute] [--adaptive:none] sm:[--trigger:hover] relative">
-                  <button
-                    type="button"
-                    className="w-full flex justify-between items-center text-sm text-gray-800 rounded-lg py-2 px-3 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300"
-                  >
-                    Sub Menu
-                    <svg
-                      className="sm:-rotate-90 flex-shrink-0 ms-2 size-4"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width={24}
-                      height={24}
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="m6 9 6 6 6-6" />
-                    </svg>
-                  </button>
-                  <div className="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] sm:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 sm:w-48 hidden z-10 sm:mt-2 bg-white sm:shadow-md rounded-lg p-2 dark:bg-neutral-800 sm:dark:border dark:border-neutral-700 dark:divide-neutral-700 before:absolute sm:border before:-end-5 before:top-0 before:h-full before:w-5 !mx-[10px] top-0 end-full">
-                    <a
-                      className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300"
-                      href="#"
-                    >
-                      About
-                    </a>
-                    <a
-                      className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300"
-                      href="#"
-                    >
-                      Downloads
-                    </a>
-                    <a
-                      className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300"
-                      href="#"
-                    >
-                      Team Account
-                    </a>
-                  </div>
-                </div>
-                <a
-                  className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300"
-                  href="#"
-                >
-                  Downloads
-                </a>
-                <a
-                  className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300"
-                  href="#"
-                >
-                  Team Account
-                </a>
-              </div>
             </div>
-            <a
-              className="flex items-center gap-x-2 font-medium text-white/80 hover:text-white sm:border-s sm:border-white/30 sm:my-6 sm:ps-6"
-              href="#"
-            >
-              <svg
-                className="flex-shrink-0 size-4"
-                xmlns="http://www.w3.org/2000/svg"
-                width={24}
-                height={24}
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-                <circle cx={12} cy={7} r={4} />
-              </svg>
-              Log in
-            </a>
           </div>
-        </div>
-      </nav>
-    </header><>
-    {/* Card Section */}
-    <div className="max-w-4xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-      {/* Card */}
-      <div className="bg-white rounded-xl shadow p-4 sm:p-7 dark:bg-neutral-900">
-        <form>
-          {/* Section */}
-          <div className="grid sm:grid-cols-12 gap-2 sm:gap-4 py-8 first:pt-0 last:pb-0 border-t first:border-transparent border-gray-200 dark:border-neutral-700 dark:first:border-transparent">
-            <div className="sm:col-span-12">
-              <h2 className="text-lg font-semibold text-gray-800 dark:text-neutral-200">
-                Submit your application
-              </h2>
-            </div>
-            {/* End Col */}
-            <div className="sm:col-span-3">
-              <label
-                htmlFor="af-submit-application-full-name"
-                className="inline-block text-sm font-medium text-gray-500 mt-2.5 dark:text-neutral-500"
-              >
-                Full name
-              </label>
-            </div>
-            {/* End Col */}
-            <div className="sm:col-span-9">
-              <div className="sm:flex">
-                <input
-                  id="af-submit-application-full-name"
-                  type="text"
-                  className="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                />
-                <input
-                  type="text"
-                  className="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                />
-              </div>
-            </div>
-            {/* End Col */}
-            <div className="sm:col-span-3">
-              <label
-                htmlFor="af-submit-application-email"
-                className="inline-block text-sm font-medium text-gray-500 mt-2.5 dark:text-neutral-500"
-              >
-                Email
-              </label>
-            </div>
-            {/* End Col */}
-            <div className="sm:col-span-9">
-              <input
-                id="af-submit-application-email"
-                type="email"
-                className="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-              />
-            </div>
-            {/* End Col */}
-            <div className="sm:col-span-3">
-              <div className="inline-block">
-                <label
-                  htmlFor="af-submit-application-phone"
-                  className="inline-block text-sm font-medium text-gray-500 mt-2.5 dark:text-neutral-500"
-                >
-                  Phone
-                </label>
-              </div>
-            </div>
-            {/* End Col */}
-            <div className="sm:col-span-9">
-              <input
-                id="af-submit-application-phone"
-                type="text"
-                className="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-              />
-              <p className="mt-3">
-                <a
-                  className="inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 hover:underline font-medium dark:text-blue-500"
-                  href="../docs/index.html"
-                >
-                  <svg
-                    className="flex-shrink-0 size-4"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width={24}
-                    height={24}
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <circle cx={12} cy={12} r={10} />
-                    <path d="M8 12h8" />
-                    <path d="M12 8v8" />
-                  </svg>
-                  Add phone
-                </a>
-              </p>
-            </div>
-            {/* End Col */}
-            <div className="sm:col-span-3">
-              <div className="inline-block">
-                <label
-                  htmlFor="af-submit-application-current-company"
-                  className="inline-block text-sm font-medium text-gray-500 mt-2.5 dark:text-neutral-500"
-                >
-                  Qualification
-                </label>
-              </div>
-            </div>
-            {/* End Col */}
-            <div className="sm:col-span-9">
-              <input
-                id="af-submit-application-current-company"
-                type="text"
-                className="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-              />
-            </div>
-            {/* End Col */}
-          </div>
-          {/* End Section */}
-          {/* Section */}
-          <div className="grid sm:grid-cols-12 gap-2 sm:gap-4 py-8 first:pt-0 last:pb-0 border-t first:border-transparent border-gray-200 dark:border-neutral-700 dark:first:border-transparent">
-            <div className="sm:col-span-12">
-              <h2 className="text-lg font-semibold text-gray-800 dark:text-neutral-200">
-                Profile
-              </h2>
-            </div>
-            {/* End Col */}
-            <div className="sm:col-span-3">
-              <label
-                htmlFor="af-submit-application-resume-cv"
-                className="inline-block text-sm font-medium text-gray-500 mt-2.5 dark:text-neutral-500"
-              >
-                Resume/CV
-              </label>
-            </div>
-            {/* End Col */}
-            <div className="sm:col-span-9">
-              <label
-                htmlFor="af-submit-application-resume-cv"
-                className="sr-only"
-              >
-                Choose file
-              </label>
-              <input
-                type="file"
-                name="af-submit-application-resume-cv"
-                id="af-submit-application-resume-cv"
-                className="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400
-        file:bg-gray-50 file:border-0
-        file:bg-gray-100 file:me-4
-        file:py-2 file:px-4
-        dark:file:bg-neutral-700 dark:file:text-neutral-400"
-              />
-            </div>
-            {/* End Col */}
-            <div className="sm:col-span-3">
-              <div className="inline-block">
-                <label
-                  htmlFor="af-submit-application-bio"
-                  className="inline-block text-sm font-medium text-gray-500 mt-2.5 dark:text-neutral-500"
-                >
-                  Personal summary
-                </label>
-              </div>
-            </div>
-            {/* End Col */}
-            <div className="sm:col-span-9">
-              <textarea
-                id="af-submit-application-bio"
-                className="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                rows={6}
-                placeholder="Add a cover letter or anything else you want to share."
-                defaultValue={""}
-              />
-            </div>
-            {/* End Col */}
-          </div>
-          {/* End Section */}
-          {/* Section */}
-          <div className="grid sm:grid-cols-12 gap-2 sm:gap-4 py-8 first:pt-0 last:pb-0 border-t first:border-transparent border-gray-200 dark:border-neutral-700 dark:first:border-transparent">
-            <div className="sm:col-span-12">
-              <h2 className="text-lg font-semibold text-gray-800 dark:text-neutral-200">
-                Links
-              </h2>
-            </div>
-            {/* End Col */}
-            <div className="sm:col-span-3">
-              <label
-                htmlFor="af-submit-application-linkedin-url"
-                className="inline-block text-sm font-medium text-gray-500 mt-2.5 dark:text-neutral-500"
-              >
-                LinkedIn URL
-              </label>
-            </div>
-            {/* End Col */}
-            <div className="sm:col-span-9">
-              <input
-                id="af-submit-application-linkedin-url"
-                type="text"
-                className="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-              />
-            </div>
-            {/* End Col */}
-            <div className="sm:col-span-3">
-            </div>
-            {/* End Col */}
-            <div className="sm:col-span-9">
-              <input
-                id="af-submit-application-twitter-url"
-                type="text"
-                className="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-              />
-            </div>
-            {/* End Col */}
-            <div className="sm:col-span-3">
-              <label
-                htmlFor="af-submit-application-github-url"
-                className="inline-block text-sm font-medium text-gray-500 mt-2.5 dark:text-neutral-500"
-              >
-                Github URL
-              </label>
-            </div>
-            {/* End Col */}
-            <div className="sm:col-span-9">
-              <input
-                id="af-submit-application-github-url"
-                type="text"
-                className="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-              />
-            </div>
-            {/* End Col */}
-            <div className="sm:col-span-3">
-             
-            </div>
-            {/* End Col */}
-            <div className="sm:col-span-9">
-              <input
-                id="af-submit-application-portfolio-url"
-                type="text"
-                className="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-              />
-            </div>
-            {/* End Col */}
-            <div className="sm:col-span-3">
-              <label
-                htmlFor="af-submit-application-other-website"
-                className="inline-block text-sm font-medium text-gray-500 mt-2.5 dark:text-neutral-500"
-              >
-                Other website
-              </label>
-            </div>
-            {/* End Col */}
-            <div className="sm:col-span-9">
-              <input
-                id="af-submit-application-other-website"
-                type="text"
-                className="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-              />
-            </div>
-            {/* End Col */}
-            <div className="sm:col-start-4 sm:col-span-8">
+          <div
+            id="navbar-collapse-with-animation"
+            className="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:block"
+          >
+            <div className="flex flex-col gap-y-4 gap-x-0 mt-5 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:ps-7">
               <a
-                className="inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 hover:underline font-medium dark:text-blue-500"
-                href="../docs/index.html"
+                className="font-medium text-white sm:py-6"
+                href="/home"
+                aria-current="page"
+              >
+                Home
+              </a>
+              <a
+                className="font-medium text-white/80 hover:text-white sm:py-6"
+                href="/signup"
+              >
+                Signup
+              </a>
+              <a
+                className="font-medium text-white/80 hover:text-white sm:py-6"
+                href="/login"
+              >
+                Login
+              </a>
+              <a
+                className="font-medium text-white/80 hover:text-white sm:py-6"
+                href="/contact"
+              >
+                Contact
+              </a>
+    
+              <a
+                className="flex items-center gap-x-2 font-medium text-white/80 hover:text-white sm:border-s sm:border-white/30 sm:my-6 sm:ps-6"
+                href="#"
               >
                 <svg
                   className="flex-shrink-0 size-4"
@@ -474,99 +144,192 @@ const AddStudent = () => {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 >
-                  <circle cx={12} cy={12} r={10} />
-                  <path d="M8 12h8" />
-                  <path d="M12 8v8" />
+                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                  <circle cx={12} cy={7} r={4} />
                 </svg>
-                Add URL
+                Log in
               </a>
             </div>
           </div>
-          {/* End Section */}
-          {/* Section */}
-          <div className="grid sm:grid-cols-12 gap-2 sm:gap-4 py-8 first:pt-0 last:pb-0 border-t first:border-transparent border-gray-200 dark:border-neutral-700 dark:first:border-transparent">
-            <div className="sm:col-span-12">
-              <h2 className="text-lg font-semibold text-gray-800 dark:text-neutral-200">
-                Before sending your application, please let us know...
-              </h2>
-            </div>
-            {/* End Col */}
-            <div className="sm:col-span-3">
-              <label
-                htmlFor="af-submit-application-desired-salary"
-                className="inline-block text-sm font-medium text-gray-500 mt-2.5 dark:text-neutral-500"
+        </nav>
+      </header><>
+        {/* Card Section */}
+        <div className="max-w-4xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+          {/* Card */}
+          <div className="bg-white rounded-xl shadow p-4 sm:p-7 dark:bg-neutral-900">
+            <form onSubmit={studentForm.handleSubmit}>
+              {/* Section */}
+              <div className="grid sm:grid-cols-12 gap-2 sm:gap-4 py-8 first:pt-0 last:pb-0 border-t first:border-transparent border-gray-200 dark:border-neutral-700 dark:first:border-transparent">
+                <div className="sm:col-span-12">
+                  <h2 className="text-lg font-semibold text-gray-800 dark:text-neutral-200">
+                    Student Form
+                  </h2>
+                </div>
+                {/* End Col */}
+                <div className="sm:col-span-3">
+                  <label
+                    htmlFor="af-submit-application-full-name"
+                    className="inline-block text-sm font-medium text-gray-500 mt-2.5 dark:text-neutral-500"
+                  >
+                    Name
+                  </label>
+                </div>
+                {/* End Col */}
+                <div className="sm:col-span-9">
+                  <div className="sm:flex">
+                    <input
+                      id="name"
+                      onChange={studentForm.handleChange}
+                      value={studentForm.values.name}
+                      type="text"
+                      className="border-1 py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                    />
+                  </div>
+                </div>
+                {/* End Col */}
+                <div className="sm:col-span-3">
+                  <label
+                    htmlFor="af-submit-application-email"
+                    className="inline-block text-sm font-medium text-gray-500 mt-2.5 dark:text-neutral-500"
+                  >
+                    Email
+                  </label>
+                </div>
+                {/* End Col */}
+                <div className="sm:col-span-9">
+                  <input
+                    id="email"
+                    onChange={studentForm.handleChange}
+                    value={studentForm.values.email}
+                    type="text"
+                    className="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                  />
+                </div>
+                {/* End Col */}
+                <div className="sm:col-span-3">
+                  <div className="inline-block">
+                    <label
+                      htmlFor="af-submit-application-phone"
+                      className="inline-block text-sm font-medium text-gray-500 mt-2.5 dark:text-neutral-500"
+                    >
+                      Enrollment No
+                    </label>
+                  </div>
+                </div>
+                {/* End Col */}
+                <div className="sm:col-span-9">
+                  <input
+                    id="enrollmentNumber"
+                    onChange={studentForm.handleChange}
+                    value={studentForm.values.enrollmentNumber}
+                    type="text"
+                    className="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                  />
+                  <p className="mt-3">
+
+                  </p>
+                </div>
+                {/* End Col */}
+                <div className="sm:col-span-3">
+                  <div className="inline-block">
+                    <label
+                      htmlFor="af-submit-application-current-company"
+                      className="inline-block text-sm font-medium text-gray-500 mt-2.5 dark:text-neutral-500"
+                    >
+                      Image
+                    </label>
+                  </div>
+                </div>
+                {/* End Col */}
+                <div className="sm:col-span-9">
+                  <input
+                    id="af-submit-application-current-company"
+                    type="file"
+                    className="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                  />
+                </div>
+              </div>
+              <div className="sm:col-span-3">
+                  <div className="inline-block">
+                    <label
+                      htmlFor="af-submit-application-phone"
+                      className="inline-block text-sm font-medium text-gray-500 mt-2.5 dark:text-neutral-500"
+                    >
+                      Subject
+                    </label>
+                    
+                  </div>
+                </div>
+                {/* End Col */}
+                <div className="sm:col-span-9">
+                  <input
+                    id="subject"
+                    onChange={studentForm.handleChange}
+                    value={studentForm.values.subject}
+                    type="text"
+                    className="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                  />
+                  <p className="mt-3">
+
+                  </p>
+                </div>
+                <div className="sm:col-span-3">
+                  <div className="inline-block">
+                    <label
+                      htmlFor="af-submit-application-phone"
+                      className="inline-block text-sm font-medium text-gray-500 mt-2.5 dark:text-neutral-500"
+                    >
+                      Admission Date
+                    </label>
+                  </div>
+                </div>
+                {/* End Col */}
+                <div className="sm:col-span-9">
+                  <input
+                    id="admissionDate"
+                    onChange={studentForm.handleChange}
+                    value={studentForm.values.admissionDate}
+                    type="date"
+                    className="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                  />
+                  <p className="mt-3">
+
+                  </p>
+                </div>
+                <div className="sm:col-span-3">
+                  <div className="inline-block">
+                    <label
+                      htmlFor="af-submit-application-phone"
+                      className="inline-block text-sm font-medium text-gray-500 mt-2.5 dark:text-neutral-500"
+                    >
+                      Completion Date
+                    </label>
+                  </div>
+                </div>
+                {/* End Col */}
+                <div className="sm:col-span-9">
+                  <input
+                    id="completionDate"
+                    onChange={studentForm.handleChange}
+                    value={studentForm.values.completionDate}
+                    type="date"
+                    className="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                  />
+                  <p className="mt-3">
+
+                  </p>
+                </div>
+              <button
+                type="submit"
+                className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
               >
-                Desired salary
-              </label>
-            </div>
-            {/* End Col */}
-            <div className="sm:col-span-9">
-              <input
-                id="af-submit-application-desired-salary"
-                type="text"
-                className="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-              />
-            </div>
-            {/* End Col */}
-            <div className="sm:col-span-3">
-              <label
-                htmlFor="af-submit-application-available-start-date"
-                className="inline-block text-sm font-medium text-gray-500 mt-2.5 dark:text-neutral-500"
-              >
-                Available start date
-              </label>
-            </div>
-            {/* End Col */}
-            <div className="sm:col-span-9">
-              <input
-                id="af-submit-application-available-start-date"
-                type="text"
-                className="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-              />
-            </div>
-            {/* End Col */}
+                Submit Form
+              </button>
+            </form>
           </div>
-          {/* End Section */}
-          {/* Section */}
-          <div className="py-8 first:pt-0 last:pb-0 border-t first:border-transparent border-gray-200 dark:border-neutral-700 dark:first:border-transparent">
-            <h2 className="text-lg font-semibold text-gray-800 dark:text-neutral-200">
-              Submit application
-            </h2>
-            <p className="mt-3 text-sm text-gray-600 dark:text-neutral-400">
-              In order to contact you with future jobs that you may be interested
-              in, we need to store your personal data.
-            </p>
-            <p className="mt-2 text-sm text-gray-600 dark:text-neutral-400">
-              If you are happy for us to do so please click the checkbox below.
-            </p>
-            <div className="mt-5 flex">
-              <input
-                type="checkbox"
-                className="shrink-0 mt-0.5 border-gray-300 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-600 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                id="af-submit-application-privacy-check"
-              />
-              <label
-                htmlFor="af-submit-application-privacy-check"
-                className="text-sm text-gray-500 ms-2 dark:text-neutral-400"
-              >
-                Allow us to process your personal information.
-              </label>
-            </div>
-          </div>
-          {/* End Section */}
-          <button
-            type="button"
-            className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
-          >
-            Submit application
-          </button>
-        </form>
-      </div>
-      {/* End Card */}
+        </div>
+      </>
     </div>
-    {/* End Card Section */}
-  </>
-  </div>
   )
 }
 

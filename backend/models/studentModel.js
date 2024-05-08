@@ -7,7 +7,7 @@ const mySchema = new Schema({
     image: String,
     subject: String,
     admissionDate: String,
-    completitionDate: String,
+    completionDate: String,
     createdAt: {type : Date, default: Date.now}
 });
 

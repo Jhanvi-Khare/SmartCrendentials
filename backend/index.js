@@ -2,6 +2,7 @@
 const express = require('express');
 const userRouter = require('./routers/userRouter');
 const badgeRouter = require('./routers/badgeRouter');
+const studentRouter = require('./routers/studentRouter');
 
 const cors = require('cors');
 
@@ -17,6 +18,7 @@ app.use(express.json());
 //middleware
 app.use('/user', userRouter);
 app.use('/badge', badgeRouter);
+app.use('/student', studentRouter);
 
 // endpoint
 app.get('/', (req, res) => {
