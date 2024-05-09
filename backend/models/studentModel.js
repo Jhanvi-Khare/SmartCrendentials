@@ -4,7 +4,7 @@ const mySchema = new Schema({
     name : {type : String, require: true},
     email : { type : String, unique: true},
     enrollmentNumber : String,
-    image: String,
+    image: {type : String, default: 'student_placeholder.png'},
     subject: String,
     admissionDate: String,
     completionDate: String,

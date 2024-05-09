@@ -20,6 +20,8 @@ app.use('/user', userRouter);
 app.use('/badge', badgeRouter);
 app.use('/student', studentRouter);
 
+app.use(express.static('./static/uploads'));
+
 // endpoint
 app.get('/', (req, res) => {
     res.send('Response from express');
