@@ -513,7 +513,7 @@ const page = () => {
         We use cookies to enhance your user experience. By continuing to visit
         this site you agree to{" "}
         <a
-          href="#"
+          href="/our use of cookies"
           className="underline transition-colors duration-200 hover:text-blue-500 "
         >
           our use of cookies
@@ -541,4 +541,4 @@ const page = () => {
   )
 }
 
-export default page
+export default page;
