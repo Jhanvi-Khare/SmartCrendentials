@@ -20,7 +20,7 @@ const Login = () => {
       email: "",
       password: ""
     },
-    onSubmit: (values) => {
+    onSubmit: (values, {resetForm}) => {
       console.log(values);
 
       fetch('http://localhost:5000/user/authenticate', {
@@ -72,7 +72,7 @@ const Login = () => {
               </h1>
             </div>
             <div className="mt-8 lg:w-1/2 lg:mt-0">
-              <form className="w-full lg:max-w-xl">
+              <form className="w-full lg:max-w-xl" onSubmit={loginForm.handleSubmit}>
                 <div className="relative flex items-center">
                   <span className="absolute">
                     <svg
@@ -132,7 +132,7 @@ const Login = () => {
                   )}
                 </div>
                 <div className="mt-8 md:flex md:items-center">
-                  <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg md:w-1/2 hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                  <button type='submit' className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg md:w-1/2 hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                     Login 
                   </button>
                   <a

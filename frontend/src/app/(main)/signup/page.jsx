@@ -39,6 +39,7 @@ const Signup = () => {
           if (response.status === 200) {
             resetForm();
             toast.success('Signup Successfull');
+            router.push("/login")
           } else {
             toast.error('something went wrong');
           }
@@ -103,7 +104,7 @@ const Signup = () => {
                 Or
               </div>
               {/* Form */}
-              <form>
+              <form onSubmit={signupForm.handleSubmit}>
                 <div className="mb-4">
                   <label
                     htmlFor="hs-hero-name-2"
@@ -113,7 +114,7 @@ const Signup = () => {
                   </label>
                   <input
                     type="text"
-                    id="hs-hero-name-2"
+                    id="name"
                     onChange={signupForm.handleChange}
                     value={signupForm.values.name}
                     className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
@@ -132,7 +133,7 @@ const Signup = () => {
                   </label>
                   <input
                     type="email"
-                    id="hs-hero-email-2"
+                    id="email"
                     onChange={signupForm.handleChange}
                     value={signupForm.values.email}
                     className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
@@ -151,9 +152,28 @@ const Signup = () => {
                   </label>
                   <input
                     type="password"
-                    id="hs-hero-password-2"
+                    id="password"
                     onChange={signupForm.handleChange}
                     value={signupForm.values.password}
+                    className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                    placeholder="Password"
+                  />
+                  {signupForm.touched.password && (
+                    <small className='text-red-300'>{signupForm.errors.password}</small>
+                  )}
+                </div>
+                <div className="mb-4">
+                  <label
+                    htmlFor="hs-hero-password-2"
+                    className="block text-sm font-medium dark:text-white"
+                  >
+                    <span className="sr-only">Confirm Password</span>
+                  </label>
+                  <input
+                    type="password"
+                    id="confirmPassword"
+                    onChange={signupForm.handleChange}
+                    value={signupForm.values.confirmPassword}
                     className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                     placeholder="Password"
                   />
