@@ -1,4 +1,5 @@
 'use client';
+import { Description, Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 
@@ -6,6 +7,9 @@ const IssueBadge = () => {
 
     const { id } = useParams();
     const [studentDetails, setStudentDetails] = useState(null);
+    const [badgeList, setBadgeList] = useState([]);
+    const [issuedBadges, setIssuedBadges] = useState([]);
+    let [isOpen, setIsOpen] = useState(false)
 
     const fetchStudentData = () => {
         fetch(`http://localhost:5000/student/getbyid/${id}`)
@@ -19,8 +23,24 @@ const IssueBadge = () => {
             })
     }
 
+    const fetchBadges = () => {
+        fetch(`http://localhost:5000/badge/getall`)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setBadgeList(data);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
+
+
     useEffect(() => {
         fetchStudentData();
+        fetchBadges();
+        fetchIssuedBadges();
     }, [])
 
 
@@ -132,9 +152,86 @@ const IssueBadge = () => {
         }
     }
 
+    const displayBadges = () => {
+        return badgeList.map((badge, index) => {
+            return <div key={index} className="flex items-center justify-between p-4 border-b">
+                <div>
+                    <h3>{badge.name}</h3>
+                    <p>{badge.description}</p>
+                </div>
+                <button onClick={
+                    () => {
+                        issueBadge(badge._id);
+                        fetchIssuedBadges();
+                    }
+                }>Issue</button>
+            </div>
+        })
+    }
+
+    const issueBadge = (badgeId) => {
+        fetch(`http://localhost:5000/issue/add`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                student: id,
+                badge: badgeId
+            })
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
+    const fetchIssuedBadges = () => {
+        fetch(`http://localhost:5000/issue/getbystudent/` + id)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setIssuedBadges(data);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
+    const displaIssuedBadges = () => {
+        return issuedBadges.map((badge, index) => {
+            return <div key={index} className="flex items-center justify-between p-4 border-b">
+                <div>
+                    <h3>{badge.name}</h3>
+                    <p>{badge.description}</p>
+                </div>
+            </div>
+        })
+    }
+
     return (
         <div>
             {displayStudentDetails()}
+            <h2>Issued Badges</h2>
+            {displaIssuedBadges()}
+            <button onClick={() => setIsOpen(true)}>Open dialog</button>
+            <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
+                <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
+                    <DialogPanel className="max-w-lg space-y-4 border bg-white p-12 bg-slate-700">
+                        <DialogTitle className="font-bold">Issue Badge</DialogTitle>
+                        <Description>Issue Badge to student</Description>
+                        {
+                            displayBadges()
+                        }
+                        <div className="flex gap-4">
+                            <button onClick={() => setIsOpen(false)}>Cancel</button>
+                        </div>
+                    </DialogPanel>
+                </div>
+            </Dialog>
         </div>
     )
 }

@@ -3,6 +3,7 @@ const express = require('express');
 const userRouter = require('./routers/userRouter');
 const badgeRouter = require('./routers/badgeRouter');
 const studentRouter = require('./routers/studentRouter');
+const issueRouter = require('./routers/issueRouter');
 
 const cors = require('cors');
 
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use('/user', userRouter);
 app.use('/badge', badgeRouter);
 app.use('/student', studentRouter);
+app.use('/issue', issueRouter);
 
 app.use(express.static('./static/uploads'));
 
