@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Model = require('../models/studentModel');
+const Model = require('../models/issueModel');
 
 
 router.post('/add', (req, res) => {
@@ -28,13 +28,24 @@ router.get('/getall', (req, res) => {
 
 //getbyid
 router.get('/getbyid/:id', (req, res) => {
-    Model.findById(req.params.id)
+     Model.findById(req.params.id)
         .then((result) => {
             res.status(200).json(result);
         }).catch((err) => {
             console.log(err);
             res.status(500).json(err);
         });
+});
+
+// getbystudent
+router.get('/getbystudent/:id', (req, res) => {
+    Model.find({student : req.params.id})
+       .then((result) => {
+           res.status(200).json(result);
+       }).catch((err) => {
+           console.log(err);
+           res.status(500).json(err);
+       });
 });
 
 //delete
@@ -43,18 +54,8 @@ router.get('/delete', (req, res) => {
 });
 
 //update
-router.put('/update/:id', (req, res) => {
-    Model.findByIdAndUpdate(
-        req.params.id,
-        req.body,
-        { new: true }
-    )
-        .then((result) => {
-            res.status(200).json(result);
-        }).catch((err) => {
-            console.log(err);
-            res.status(500).json(err);
-        });
+router.get('/update', (req, res) => {
+    res.send('Response from user update');
 });
 
 module.exports = router;

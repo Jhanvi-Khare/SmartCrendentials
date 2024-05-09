@@ -1,20 +1,19 @@
 'use client';
-import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast';
 
-const ManageStudent = () => {
+const ManageBadge = () => {
 
-  const [studentList, setStudentList] = useState([]);
+  const [badgeList, setBadgeList] = useState([]);
 
-  const fetchStudents = () => {
-    fetch('http://localhost:5000/student/getall')
+  const fetchBadges = () => {
+    fetch('http://localhost:5000/badge/getall')
       .then((response) => {
         return response.json();
       })
       .then((data) => {
         console.log(data);
-        setStudentList(data);
+        setBadgeList(data);
       })
       .catch((err) => {
         console.log(err);
@@ -22,17 +21,17 @@ const ManageStudent = () => {
   }
 
   useEffect(() => {
-    fetchStudents();
+    fetchBadges();
   }, [])
 
-  const deleteStudent = (id) => {
-    fetch(`http://localhost:5000/student/delete/${id}`, {
+  const deleteBadge = (id) => {
+    fetch(`http://localhost:5000/badge/delete/${id}`, {
       method: 'DELETE'
     })
       .then((response) => {
         if (response.status === 200) {
-          toast.success('Student deleted successfully');
-          fetchStudents();
+          toast.success('Badge deleted successfully');
+          fetchBadges();
         }
       })
       .catch((err) => {
@@ -40,8 +39,8 @@ const ManageStudent = () => {
       });
   }
 
-  const displayStudents = () => {
-    return studentList.map((student, index) => {
+  const displayBadges = () => {
+    return badgeList.map((badge, index) => {
       return (
         <tr>
           <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
@@ -52,33 +51,33 @@ const ManageStudent = () => {
               />
               <div className="flex items-center gap-x-2">
                 <div className="flex items-center justify-center w-8 h-8 text-blue-500 bg-blue-100 rounded-full dark:bg-gray-800">
-                  <img className='rounded-full' src={'http://localhost:5000/' + student.image} alt="" />
+                  <img className='rounded-full' src={'http://localhost:5000/' + badge.image} alt="" />
                 </div>
                 <div>
                   <h2 className="font-normal text-gray-800 dark:text-white ">
-                    {student.name}
+                    {badge.name}
                   </h2>
                   <p className="text-xs font-normal text-gray-500 dark:text-gray-400">
-                    {student.enrollmentNumber}
+                    {badge.enrollmentNumber}
                   </p>
                 </div>
               </div>
             </div>
           </td>
           <td className="px-12 py-4 text-sm font-normal text-gray-300 whitespace-nowrap">
-            {student.subject}
+            {badge.subject}
           </td>
           <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-            {new Date(student.admissionDate).toDateString()}
+            {new Date(badge.admissionDate).toDateString()}
           </td>
           <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-            {new Date(student.completionDate).toDateString()}
+            {new Date(badge.completionDate).toDateString()}
           </td>
           <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-            {student.email}
+            {badge.email}
           </td>
           <td className="px-4 py-4 text-sm whitespace-nowrap">
-            <Link href={'/admin/issue-badge/'+student._id} className="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100">
+            <button className="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -93,7 +92,7 @@ const ManageStudent = () => {
                   d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z"
                 />
               </svg>
-            </Link>
+            </button>
           </td>
         </tr>
       )
@@ -104,7 +103,7 @@ const ManageStudent = () => {
     <div><section className="container px-4 mx-auto">
       <div className="sm:flex sm:items-center sm:justify-between">
         <h2 className="text-lg font-medium text-gray-800 dark:text-white">
-          Student Manager
+          Badge Manager
         </h2>
         <div className="flex items-center mt-4 gap-x-3">
           <button className="w-1/2 px-5 py-2 text-sm text-gray-800 transition-colors duration-200 bg-white border rounded-lg sm:w-auto dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-gray-100 dark:text-white dark:border-gray-700">
@@ -112,7 +111,7 @@ const ManageStudent = () => {
           </button>
           <button className="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-plus"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
-            <span>Add New Student</span>
+            <span>Add New Badge</span>
           </button>
         </div>
       </div>
@@ -166,7 +165,7 @@ const ManageStudent = () => {
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                   {
-                    displayStudents()
+                    displayBadges()
                   }
                 </tbody>
               </table>
@@ -265,4 +264,4 @@ const ManageStudent = () => {
   )
 }
 
-export default ManageStudent;
+export default ManageBadge;
