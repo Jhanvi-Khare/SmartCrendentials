@@ -20,6 +20,14 @@ const BrowseBadges = () => {
             });
     }
 
+    const stringSlicer = (str, maxLen) => {
+        if (str.length > maxLen) {
+            return str.slice(0, maxLen) + '...'
+        } else {
+            return str;
+        }
+    }
+
     useEffect(() => {
         fetchBadges();
     }, [])
@@ -34,7 +42,7 @@ const BrowseBadges = () => {
                         className="w-1/3 bg-cover"
                         style={{
                             backgroundImage:
-                                'url("https://images.unsplash.com/photo-1494726161322-5360d4d0eeae?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80")'
+                                `url("http://localhost:5000/${badge.image}")`
                         }}
                     />
                     <div className="w-2/3 p-4 md:p-4">
@@ -45,7 +53,7 @@ const BrowseBadges = () => {
                             {badge.subject}
                         </p>
                         <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                            {badge.description}
+                            {stringSlicer(badge.description, 50)}
                         </p>
                         <div className="flex mt-2 item-center">
                             <svg
@@ -77,7 +85,7 @@ const BrowseBadges = () => {
                             <h1 className="text-lg font-bold text-gray-700 dark:text-gray-200 md:text-xl">
                                 $220
                             </h1>
-                            <Link href={'/view-badge/'+badge._id} className="px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-300 transform bg-gray-800 rounded dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 focus:outline-none focus:bg-gray-700 dark:focus:bg-gray-600">
+                            <Link href={'/view-badge/' + badge._id} className="px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-300 transform bg-gray-800 rounded dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 focus:outline-none focus:bg-gray-700 dark:focus:bg-gray-600">
                                 View Details
                             </Link>
                         </div>

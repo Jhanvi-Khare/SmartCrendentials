@@ -192,23 +192,40 @@ const IssueBadge = () => {
             })
     }
 
+    const deleteIssue = (id) => {
+        fetch(`http://localhost:5000/issue/delete/` + id, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                fetchIssuedBadges();
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
     const displaIssuedBadges = () => {
-        return issuedBadges.map((badge, index) => {
+        return issuedBadges.map((issue, index) => {
             return <div className="group flex flex-col bg-white border shadow-sm rounded-xl hover:shadow-md transition dark:bg-neutral-900 dark:border-neutral-800">
                 <div className="p-4 md:p-5">
                     <div className="flex justify-between items-center">
                         <div className="flex items-center">
                             <img
                                 className="size-[38px] rounded-full"
-                                src="https://images.unsplash.com/photo-1486299267070-83823f5448dd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80"
+                                src={`http://localhost:5000/${issue.badge.image}`}
                                 alt="Image Description"
                             />
                             <div className="ms-3">
                                 <h3 className="group-hover:text-blue-600 font-semibold text-gray-800 dark:group-hover:text-neutral-400 dark:text-neutral-200">
-                                    London, UK
+                                    {issue.badge.name}
                                 </h3>
                             </div>
                         </div>
+                        <button onClick={e => deleteIssue(issue._id)} className="ps-3 text-red-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-trash"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -219,8 +236,8 @@ const IssueBadge = () => {
         <div>
             <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
                 {displayStudentDetails()}
+                <h2 className='text-lg font-medium text-gray-800 dark:text-white'>Issued Badges</h2>
                 <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
-                    <h2>Issued Badges</h2>
                     {displaIssuedBadges()}
                 </div>
 
