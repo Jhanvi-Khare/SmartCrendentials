@@ -56,12 +56,11 @@ const Login = () => {
 
 
   return (
-    <div><div className="space-y-4">
+    <div>
 
-    </div>
-      <div><section className="bg-white dark:bg-gray-900">
-        <div className="container px-6 py-24 mx-auto lg:py-32">
-          <div className="lg:flex">
+      <div><section className="bg-white h-screen dark:bg-gray-900">
+        <div className="container px-6 py-24 mx-auto lg:py-32 h-full">
+          <div className="lg:flex h-full">
             <div className="lg:w-1/2">
 
               <h1 className="mt-4 text-gray-600 dark:text-gray-300 md:text-lg">
