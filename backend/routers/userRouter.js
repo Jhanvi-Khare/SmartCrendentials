@@ -15,6 +15,19 @@ router.post('/add', (req, res) => {
 
 });
 
+router.post("/authenticate", (req,res) => {
+    Model.findOne(req.body)
+    .then((result) => {
+        if(result){
+            res.status(200).json(result);
+        }else{
+            res.status(401).json({message: "invalide credentials"})
+        }
+    }).catch((err) => {
+        res.status(500).json(err);
+    });
+});
+
 //getall
 router.get('/getall', (req, res) => {
     res.send('Response from user getall');

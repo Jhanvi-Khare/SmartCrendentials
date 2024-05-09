@@ -82,6 +82,13 @@ const page = () => {
         </div>
         {/* End Hero */}
       </>
+      <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+          <div className="aspect-w-16 aspect-h-7">
+            <img
+              className="w-full object-cover rounded-xl"
+              src="https://png.pngtree.com/thumb_back/fh260/back_our/20190620/ourmid/pngtree-educational-institution-autumn-admission-poster-background-image_146770.jpg"
+            />
+          </div>
       <>
         {/* Icon Blocks */}
         <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
@@ -214,6 +221,7 @@ const page = () => {
         {/* End Icon Blocks */}
       </>
       <div>
+        
       <section className="bg-white dark:bg-gray-900">
   <div className="container px-6 py-10 mx-auto">
     <div className="text-center">
@@ -229,7 +237,7 @@ const page = () => {
       <div>
         <img
           className="relative z-10 object-cover w-full rounded-md h-96"
-          src="https://images.unsplash.com/photo-1644018335954-ab54c83e007f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+          src="https://images.shiksha.com/mediadata/images/1696503175phprDLkI2.jpeg"
           alt=""
         />
         <div className="relative z-20 max-w-lg p-6 mx-auto -mt-20 bg-white rounded-md shadow dark:bg-gray-900">
@@ -249,7 +257,7 @@ const page = () => {
       <div>
         <img
           className="relative z-10 object-cover w-full rounded-md h-96"
-          src="https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+          src="https://res.cloudinary.com/eventboost/image/upload/f_auto,q_auto:eco/v1592459840/website/wp/event-badges-01.jpg"
           alt=""
         />
         <div className="relative z-20 max-w-lg p-6 mx-auto -mt-20 bg-white rounded-md shadow dark:bg-gray-900">
@@ -434,111 +442,14 @@ const page = () => {
 </footer>
 
       </div>
-      <header className="bg-white dark:bg-gray-900">
-  <nav className="border-t-4 border-blue-500">
-    <div className="container flex items-center justify-between px-6 py-3 mx-auto">
-  
-      <a
-        className="my-1 text-sm font-medium text-gray-500 rtl:-scale-x-100 dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 lg:mx-4 lg:my-0"
-        href="#"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-6 h-6"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path
-            fillRule="evenodd"
-            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-            clipRule="evenodd"
-          />
-        </svg>
-      </a>
+      
+
+
+
+
     </div>
-  </nav>
-  <div className="container px-6 py-16 mx-auto">
-    <div className="items-center lg:flex">
-      <div className="w-full lg:w-1/2">
-        <div className="lg:max-w-lg">
-          <h1 className="text-3xl font-semibold text-gray-800 dark:text-white lg:text-4xl">
-            Subscribe To The <span className="text-blue-500">Newsletter</span>
-          </h1>
-          <p className="mt-3 text-gray-600 dark:text-gray-400">
-            be the first to knows when our{" "}
-            <span className="font-medium text-blue-500">Brand</span> is live
-          </p>
-          <div className="flex flex-col mt-6 space-y-3 lg:space-y-0 lg:flex-row">
-            <input
-              id="email"
-              type="text"
-              className="px-4 py-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-blue-300"
-              placeholder="Email Address"
-            />
-            <button className="w-full px-5 py-2 text-sm tracking-wider text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded-lg lg:w-auto lg:mx-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
-              Subscribe
-            </button>
-          </div>
-        </div>
-      </div>
-      <div className="flex items-center justify-center w-full mt-6 lg:mt-0 lg:w-1/2">
-        <img
-          className="w-full h-full max-w-md"
-          src="https://merakiui.com/images/components/Email-campaign-bro.svg"
-          alt="email illustration vector art"
-        />
-      </div>
-    </div>
-  </div>
-</header>
-
-<section className="fixed bottom-0 w-full bg-gray-50 dark:bg-gray-800">
-  <div className="max-w-5xl px-4 py-8 mx-auto md:flex md:items-center md:gap-x-6">
-    <div className="flex items-start md:items-center gap-x-2">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth="1.5"
-        stroke="currentColor"
-        className="w-6 h-6 text-gray-500 shrink-0 dark:text-gray-300"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
-        />
-      </svg>
-      <p className="text-gray-700 dark:text-gray-200">
-        We use cookies to enhance your user experience. By continuing to visit
-        this site you agree to{" "}
-        <a
-          href="#"
-          className="underline transition-colors duration-200 hover:text-blue-500 "
-        >
-          our use of cookies
-        </a>
-        .
-      </p>
-    </div>
-    <button className="items-center justify-center hidden text-gray-700 transition-colors duration-300 rounded-full md:flex dark:text-gray-200 dark:hover:bg-gray-700 w-7 h-7 focus:outline-none hover:bg-gray-200">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-        className="w-5 h-5"
-      >
-        <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
-      </svg>
-    </button>
-  </div>
-</section>
-
-
-
-
     </div>
   )
 }
 
-export default page
+export default page;
