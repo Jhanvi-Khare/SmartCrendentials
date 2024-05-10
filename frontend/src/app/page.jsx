@@ -83,7 +83,7 @@ const page = () => {
         {/* End Hero */}
       </>
       <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-          <div className="aspect-w-16 aspect-h-7">
+          <div className="aspect-w-16 aspect-h-10">
             <img
               className="w-full object-cover rounded-xl"
               src="https://png.pngtree.com/thumb_back/fh260/back_our/20190620/ourmid/pngtree-educational-institution-autumn-admission-poster-background-image_146770.jpg"

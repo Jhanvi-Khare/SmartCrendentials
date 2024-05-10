@@ -14,7 +14,7 @@ const AdminNavbar = () => {
             href="#"
             aria-label="Brand"
           >
-            Smart Credentials
+            Smart Crendentials
           </a>
           <div className="sm:hidden">
             <button
@@ -88,29 +88,13 @@ const AdminNavbar = () => {
             >
               Contact
             </a>
-
-            <Link
-              className="flex items-center gap-x-2 font-medium text-white/80 hover:text-white sm:border-s sm:border-white/30 sm:my-6 sm:ps-6"
-              href="/login"
+            <a
+              className="font-medium text-white/80 hover:text-white sm:py-6"
+              href="/about us"
             >
-              <svg
-                className="flex-shrink-0 size-4"
-                xmlns="http://www.w3.org/2000/svg"
-                width={24}
-                height={24}
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-                <circle cx={12} cy={7} r={4} />
-              </svg>
-              Log in
-
-            </Link>
+              About Us
+            </a>
+            
 
           </div>
         </div>
