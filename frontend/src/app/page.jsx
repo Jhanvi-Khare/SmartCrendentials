@@ -96,11 +96,13 @@ const page = () => {
   <div className="container px-6 py-10 mx-auto">
     <div className="text-center">
       <h1 className="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">
-        From the blog
+        Objectives of Smart  Crendentials
       </h1>
       <p className="max-w-lg mx-auto mt-4 text-gray-500">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure veritatis
-        sint autem nesciunt, laudantium quia tempore delect
+       Smart Crendentials (Digihub) aims to empower students by providing a platform to earn, manage,
+       and share digital badges as verifiable recognition of their achievements. The
+       project has the following key objectives:
+
       </p>
     </div>
     <div className="grid grid-cols-1 gap-8 mt-8 lg:grid-cols-2">
@@ -115,13 +117,13 @@ const page = () => {
             href="#"
             className="font-semibold text-gray-800 hover:underline dark:text-white md:text-xl"
           >
-            All the features you want to know
+            To create a user-friendly platform:
           </a>
           <p className="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure
-            veritatis sint autem nesciunt, laudantium quia tempore delect
+          Develop a web-based platform where students can seamlessly access courses, complete specializations, and
+          earn digital badges.
           </p>
-          <p className="mt-3 text-sm text-blue-500">21 October 2019</p>
+          <p className="mt-3 text-sm text-blue-500">10 May 2024</p>
         </div>
       </div>
       <div>
@@ -135,13 +137,13 @@ const page = () => {
             href="#"
             className="font-semibold text-gray-800 hover:underline dark:text-white md:text-xl"
           >
-            How to use sticky note for problem solving
+            To implement a secure badging system:
           </a>
           <p className="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure
-            veritatis sint autem nesciunt, laudantium quia tempore delect
+          Integrate a secure system for issuing and managing digital badges, ensuring their authenticity and
+          verifiability.
           </p>
-          <p className="mt-3 text-sm text-blue-500">20 October 2019</p>
+          <p className="mt-3 text-sm text-blue-500">10 May 2024</p>
         </div>
       </div>
     </div>
@@ -179,12 +181,10 @@ const page = () => {
         <span className="sr-only">Home Page</span>
       </a>
       <p className="my-4 text-xs leading-normal text-gray-600">
-        Hosted in the EU 🇪🇺, with <strong>no user tracking</strong> scripts.
-        Made all over the world by{" "}
-        <a href="#" className="underline" target="_blank">
-          17 amazing people
-        </a>
-        .
+      Design features that incentivize students to pursue course specializations and actively track their learning
+      progress.
+        
+        
       </p>
     </div>
     <nav className="col-span-1 md:col-span-1 lg:col-span-2">

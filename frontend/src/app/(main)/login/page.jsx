@@ -8,10 +8,7 @@ import * as Yup from 'Yup';
 
 const loginValidationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid Email').required('Email is Required'),
-  password: Yup.string().required('Password is Required').min(6, 'Password is Too Short')
-    .matches(/[A-Z]/, 'Password must contain uppercase letter')
-    .matches(/[a-z]/, 'Password must contain lowercase letter')
-    .matches(/[0-9]/, 'Password must contain number')
+  password: Yup.string().required('Password is Required')
 });
 
 const Login = () => {
