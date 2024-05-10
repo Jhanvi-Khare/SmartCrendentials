@@ -28,7 +28,7 @@ router.get('/getall', (req, res) => {
 
 //getbyid
 router.get('/getbyid/:id', (req, res) => {
-     Model.findById(req.params.id)
+    Model.findById(req.params.id)
         .then((result) => {
             res.status(200).json(result);
         }).catch((err) => {
@@ -39,18 +39,24 @@ router.get('/getbyid/:id', (req, res) => {
 
 // getbystudent
 router.get('/getbystudent/:id', (req, res) => {
-    Model.find({student : req.params.id})
-       .then((result) => {
-           res.status(200).json(result);
-       }).catch((err) => {
-           console.log(err);
-           res.status(500).json(err);
-       });
+    Model.find({ student: req.params.id }).populate('badge')
+        .then((result) => {
+            res.status(200).json(result);
+        }).catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
 
 //delete
-router.get('/delete', (req, res) => {
-    res.send('Response from user delete');
+router.delete('/delete/:id', (req, res) => {
+    Model.findByIdAndDelete(req.params.id)
+        .then((result) => {
+            res.status(200).json(result);
+        }).catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
 
 //update

@@ -68,30 +68,14 @@ const ManageBadge = () => {
             {badge.subject}
           </td>
           <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-            {new Date(badge.admissionDate).toDateString()}
+            {new Date(badge.createdAt).toDateString()}
           </td>
           <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-            {new Date(badge.completionDate).toDateString()}
-          </td>
-          <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-            {badge.email}
+            {badge.description}
           </td>
           <td className="px-4 py-4 text-sm whitespace-nowrap">
-            <button className="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z"
-                />
-              </svg>
+            <button onClick={e => deleteBadge(badge._id)} className="px-5 py-3 text-white bg-red-500 transition-colors duration-200 rounded-lg dark:text-white-300">
+              Delete
             </button>
           </td>
         </tr>
@@ -131,14 +115,14 @@ const ManageBadge = () => {
                           type="checkbox"
                           className="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
                         />
-                        <span>File name</span>
+                        <span>Badge Name</span>
                       </div>
                     </th>
                     <th
                       scope="col"
                       className="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                     >
-                      File size
+                      Subject
                     </th>
                     <th
                       scope="col"
@@ -150,14 +134,9 @@ const ManageBadge = () => {
                       scope="col"
                       className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                     >
-                      Last updated
+                      Description
                     </th>
-                    <th
-                      scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
-                    >
-                      Uploaded by
-                    </th>
+                    
                     <th scope="col" className="relative py-3.5 px-4">
                       <span className="sr-only">Edit</span>
                     </th>

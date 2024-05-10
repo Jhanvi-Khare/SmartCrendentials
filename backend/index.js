@@ -4,7 +4,7 @@ const userRouter = require('./routers/userRouter');
 const badgeRouter = require('./routers/badgeRouter');
 const studentRouter = require('./routers/studentRouter');
 const issueRouter = require('./routers/issueRouter');
-const utilRouter = require('./routers/utils');
+const utilRouter = require('./routers/utilRouter');
 
 const cors = require('cors');
 
