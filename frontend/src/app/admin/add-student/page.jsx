@@ -10,7 +10,6 @@ const AddStudent = () => {
       name: '',
       email: '',
       enrollmentNumber: '',
-      image: '',
       subject: '',
       admissionDate: '',
       completionDate: ''

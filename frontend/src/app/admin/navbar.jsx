@@ -63,37 +63,37 @@ const AdminNavbar = () => {
           className="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:block"
         >
           <div className="flex flex-col gap-y-4 gap-x-0 mt-5 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:ps-7">
-            <a
+            <Link
               className="font-medium text-white sm:py-6"
               href="/"
               aria-current="page"
             >
               Home
-            </a>
-            <a
+            </Link>
+            <Link
               className="font-medium text-white/80 hover:text-white sm:py-6"
-              href="/signup"
+              href="/admin/add-student"
             >
-              Signup
-            </a>
-            <a
+              Add Student
+            </Link>
+            <Link
               className="font-medium text-white/80 hover:text-white sm:py-6"
-              href="/login"
+              href="/admin/manage-student"
             >
-              Login
-            </a>
-            <a
+              Manage Students
+            </Link>
+            <Link
               className="font-medium text-white/80 hover:text-white sm:py-6"
-              href="/contact"
+              href="/admin/add-badge"
             >
-              Contact
-            </a>
-            <a
+              Add Badges
+            </Link>
+            <Link
               className="font-medium text-white/80 hover:text-white sm:py-6"
-              href="/about us"
+              href="/admin/manage-badge"
             >
-              About Us
-            </a>
+              Manage Badges
+            </Link>
             
 
           </div>

@@ -12,6 +12,9 @@ const loginValidationSchema = Yup.object().shape({
 });
 
 const Login = () => {
+
+  const router = useRouter();
+
   const loginForm = useFormik({
     initialValues: {
       email: "",
@@ -36,7 +39,7 @@ const Login = () => {
               .then((data) => {
                 console.log(data);
                 sessionStorage.setItem('user', JSON.stringify(data));
-                router.push('/');
+                router.push('/admin/add-badge');
               })
           } else {
             toast.error('Invalid Credentials');
