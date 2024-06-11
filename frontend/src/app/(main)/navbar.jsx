@@ -14,7 +14,7 @@ const Navbar = () => {
             href="#"
             aria-label="Brand"
           >
-            Smart Credentials
+            Smart Crendentials
           </a>
           <div className="sm:hidden">
             <button

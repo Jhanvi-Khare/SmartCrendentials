@@ -14,7 +14,7 @@ const AdminNavbar = () => {
             href="#"
             aria-label="Brand"
           >
-            Smart Credentials
+            Smart Crendentials
           </a>
           <div className="sm:hidden">
             <button
@@ -63,54 +63,38 @@ const AdminNavbar = () => {
           className="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:block"
         >
           <div className="flex flex-col gap-y-4 gap-x-0 mt-5 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:ps-7">
-            <a
+            <Link
               className="font-medium text-white sm:py-6"
               href="/"
               aria-current="page"
             >
               Home
-            </a>
-            <a
-              className="font-medium text-white/80 hover:text-white sm:py-6"
-              href="/signup"
-            >
-              Signup
-            </a>
-            <a
-              className="font-medium text-white/80 hover:text-white sm:py-6"
-              href="/login"
-            >
-              Login
-            </a>
-            <a
-              className="font-medium text-white/80 hover:text-white sm:py-6"
-              href="/contact"
-            >
-              Contact
-            </a>
-
-            <Link
-              className="flex items-center gap-x-2 font-medium text-white/80 hover:text-white sm:border-s sm:border-white/30 sm:my-6 sm:ps-6"
-              href="/login"
-            >
-              <svg
-                className="flex-shrink-0 size-4"
-                xmlns="http://www.w3.org/2000/svg"
-                width={24}
-                height={24}
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-                <circle cx={12} cy={7} r={4} />
-              </svg>
-              Log in
-
             </Link>
+            <Link
+              className="font-medium text-white/80 hover:text-white sm:py-6"
+              href="/admin/add-student"
+            >
+              Add Student
+            </Link>
+            <Link
+              className="font-medium text-white/80 hover:text-white sm:py-6"
+              href="/admin/manage-student"
+            >
+              Manage Students
+            </Link>
+            <Link
+              className="font-medium text-white/80 hover:text-white sm:py-6"
+              href="/admin/add-badge"
+            >
+              Add Badges
+            </Link>
+            <Link
+              className="font-medium text-white/80 hover:text-white sm:py-6"
+              href="/admin/manage-badge"
+            >
+              Manage Badges
+            </Link>
+            
 
           </div>
         </div>

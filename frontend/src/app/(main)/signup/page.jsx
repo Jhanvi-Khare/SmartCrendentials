@@ -63,10 +63,7 @@ const Signup = () => {
                 Solving problems for every{" "}
                 <span className="text-blue-600 dark:text-blue-500">team</span>
               </h1>
-              <p className="mt-3 text-base text-gray-500 dark:text-neutral-500">
-                Built on standard web technology, teams use Preline to build beautiful
-                cross-platform hybrid apps in a fraction of the time.
-              </p>
+            
               {/* End Title */}
               <div className="mt-8 grid">
                 <button
@@ -193,7 +190,7 @@ const Signup = () => {
               {/* End Form */}
             </div>
           </div>
-          <div className="hidden md:block md:absolute md:top-0 md:start-1/2 md:end-0 h-full bg-[url('https://images.unsplash.com/photo-1606868306217-dbf5046868d2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1981&q=80')] bg-no-repeat bg-center bg-cover" />
+          <div className="hidden md:block md:absolute md:top-0 md:start-1/2 md:end-0 h-full bg-[url('https://media.istockphoto.com/id/1353080633/vector/sign-up-stamp-imprint-seal-template-grunge-effect-vector-stock-illustration.jpg?s=612x612&w=0&k=20&c=MgfSLAL8zqYmhC91o3TzdbCtnbTEgn-SK8jrQf41tmI=')] bg-no-repeat bg-center bg-cover" />
           {/* End Col */}
         </div>
         {/* End Hero */}
