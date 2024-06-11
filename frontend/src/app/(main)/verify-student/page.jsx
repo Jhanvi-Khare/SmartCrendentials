@@ -103,7 +103,6 @@ const VerifyStudent = () => {
                                         </div>
                                     ))
                                 }
-
                             </div>
                         </div>
                     </div>
