@@ -52,7 +52,7 @@ const IssueBadge = () => {
                 <div className='col-span-2'>
                     <img
                         className="rounded-xl"
-                        src="https://images.unsplash.com/photo-1648737963503-1a26da876aca?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=900&h=900&q=80"
+                        src={"http://localhost:5000/" + (studentDetails.image ? studentDetails.image : 'student_placeholder.png')}
                         alt="Image Description"
                     />
                 </div>
@@ -82,10 +82,10 @@ const IssueBadge = () => {
         return badgeList.map((badge, index) => {
             return <div key={index} className="flex items-center justify-between p-4 border-b">
                 <div>
-                    <h3>{badge.name}</h3>
+                    <h3 className='font-bold'>{badge.name}</h3>
                     <p>{badge.description}</p>
                 </div>
-                <button onClick={
+                <button className='px-4 py-2 mt-8 bg-purple-600 text-white rounded-md' onClick={
                     () => {
                         issueBadge(badge._id);
                         fetchIssuedBadges();
@@ -149,7 +149,7 @@ const IssueBadge = () => {
                         <div className="flex items-center">
                             <img
                                 className="size-[38px] rounded-full"
-                                src={`http://localhost:5000/${issue.badge.image}`}
+                                src={`http://localhost:5000/${(issue.badge.image ? issue.badge.image : 'badge_placeholder.webp')}`}
                                 alt="Image Description"
                             />
                             <div className="ms-3">
@@ -171,14 +171,14 @@ const IssueBadge = () => {
         <div>
             <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
                 {displayStudentDetails()}
-                <h2 className='text-lg font-medium text-gray-800 dark:text-white'>Issued Badges</h2>
+                <h2 className='text-2xl font-medium text-gray-800 dark:text-white mt-10 mb-5'>Issued Badges</h2>
                 <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
                     {displaIssuedBadges()}
                 </div>
 
-                <button onClick={() => setIsOpen(true)}>Open dialog</button>
+                <button onClick={() => setIsOpen(true)} className='p-4 mt-8 bg-blue-600 text-white rounded-md'>Issue Badges</button>
                 <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
-                    <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
+                    <div className="fixed inset-0 flex w-screen items-center justify-center p-4 text-black">
                         <DialogPanel className="max-w-lg space-y-4 border bg-white p-12 bg-slate-700">
                             <DialogTitle className="font-bold">Issue Badge</DialogTitle>
                             <Description>Issue Badge to student</Description>
